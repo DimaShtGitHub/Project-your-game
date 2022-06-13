@@ -1,0 +1,56 @@
+.mainpage {
+display: grid;
+justify-content: center;
+}
+
+.hello {
+  display: flex;
+  justify-content: center;
+  margin-top: 120px;
+}
+
+.hello-1 {
+ background-color: darkgrey;
+ height: 10px;
+}
+
+.first-letter-yellow {
+  color: yellow;
+}
+
+.hello-1 {
+  padding-bottom: 30px;
+}
+
+.but-reg {
+  margin-right: 20px;
+}
+
+.but-reg-auth {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Tenor+Sans|PT+Serif:400,400italic,700,700italic&subset=latin,cyrillic);
+
+h1, h3 {
+  font-family: 'Tenor Sans', sans-serif;
+  font-size: 26px;
+  color: #111;
+  letter-spacing: 2px;
+  line-height: 1.4em;
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
+
+.link-as {
+  color: black;
+  font-family: 'Tenor Sans', sans-serif;
+  font-size: 13px;
+  letter-spacing: 2px;
+  line-height: 1.4em;
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
+

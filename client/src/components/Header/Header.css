@@ -1,0 +1,21 @@
+@import url(https://fonts.googleapis.com/css?family=Tenor+Sans|PT+Serif:400,400italic,700,700italic&subset=latin,cyrillic);
+
+.text-header {
+  font-family: 'Tenor Sans', sans-serif;
+  font-size: 13px;
+  color: #111;
+  letter-spacing: 2px;
+  line-height: 1.4em;
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
+
+.text-header-brand {
+  font-family: 'Tenor Sans', sans-serif;
+  font-size: 17px;
+  color: #111;
+  letter-spacing: 2px;
+  line-height: 1.4em;
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
