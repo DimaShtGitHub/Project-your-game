@@ -5,36 +5,63 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const cors = require('cors')
 
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
 const questRouter = require('./routes/game/questRouter');
 const oneQuestRouter = require('./routes/game/oneQuestRouter')
+const authRouter = require('./routes/auth');
+const session = require('express-session');
+const cors = require('cors');
+
+const FileStore = require('session-file-store')(session);
+
 
 const app = express();
-const PORT = process.env.PORT ?? 3100
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
+const PORT = process.env.PORT ?? 3001;
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+const sessionConfig = {
+	name: 'cookieYourGame',
+	store: new FileStore(),
+	secret: 'secretYourGame',
+	resave: false,
+	saveUninitialized: false,
+	cookie: { secure: false, maxAge: 1000 * 60 * 60 * 24 * 14 },
+  
+};
+
+app.use(session(sessionConfig));
+
 app.use(cors());
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+// app.use((req, res, next) => {
+// 	const accessList = [
+// 		'http://localhost:3000',
+// 		'http://localhost:3001',
+// 		'http://localhost:3002',
+// 	];
+// 	const origin = req.get('origin');
+// 	if (accessList.includes(origin)) { // если в списке есть адрес того, кто обращается к серверу, то делаем для него заголовок
+// 		res.header('Access-Control-Allow-Origin', origin);
+// 		res.header('Access-Control-Allow-Headers', 'Content-type');
+// 		res.header('Access-Control-Allow-Credentials', true);
+// 	}
+// 	next();
+// });
+
 app.use('/quest', questRouter)
 app.use('/oneQuest', oneQuestRouter)
+app.use('/auth', authRouter);
 
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+app.use(function (req, res, next) {
+	next(createError(404));
 });
 
 // error handler
