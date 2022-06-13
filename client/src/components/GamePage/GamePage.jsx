@@ -1,18 +1,20 @@
-import React from 'react'
-import style from './style.css'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+import Item from '../Item/Item';
 
 export default function GamePage() {
+  const [categories, setCategories] = useState([])
+  
+  useEffect(() => {
+    axios.get('http://localhost:3001/quest')
+     .then((data) => setCategories(data.data))
+  }, []);
+  
   return (
     <div>
-      GamePage
-      <div className="container" style={style}>
-        <div className="category" style={style}> dsf</div>
-        <div className="category">sfdg</div>
-        <div className="category">ffff</div>
-        <div className="category">gg</div>
-        <div className="category">hhh</div>
-      </div>
+      {categories ? categories.map((el) => <Item title={el.title} id={el.id} key={el.id} />) : '404'}
     </div>
   )
+
 }
 
