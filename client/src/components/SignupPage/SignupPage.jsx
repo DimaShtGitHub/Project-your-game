@@ -12,19 +12,20 @@ export default function SignupPage() {
 	const [inputSignUp, setInputSignUp] = useState({});
 
 	const inputSignUpHandler = (e) => {
-		console.log(inputSignUp);
 		setInputSignUp((prev) => ({ ...prev, [e.target.name]: e.target.value }))
 	}
 
 	const submitSignUpHandler = (e) => {
 		e.preventDefault();
-		console.log(222222);
 		const newUser = {name: inputSignUp.name, email: inputSignUp.email, password: inputSignUp.password}
 		axios.post('http://localhost:3001/auth/signup', newUser)
-		.then(newUser=> dispatch({type: 'SET_USE', payload: newUser.data}));
-		setInputSignUp({});
-		navigate("/game");
-	}
+		.then(newUser=> {
+			dispatch({type: 'SET_USE', payload: newUser.data});
+			localStorage.setItem('userId', newUser.data.id);
+			setInputSignUp({});
+			navigate("/game");
+		});
+};
 
 
 	return (

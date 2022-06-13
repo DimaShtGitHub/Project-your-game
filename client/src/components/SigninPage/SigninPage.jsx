@@ -10,7 +10,6 @@ export default function SigninPage() {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-
 	const inputsSigninHandler = (e)=> {
 		setInputsSignin((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 	}
@@ -21,10 +20,11 @@ export default function SigninPage() {
 		axios.post('http://localhost:3001/auth/signin',user)
 			.then((user) => {
 				dispatch({ type: 'SET_USER', payload: user.data});
-				// localStorage.setItem('userId', newUser.data.id);
-			})
-		navigate('/');
+				localStorage.setItem('userId', user.data.id);
+				navigate('/');
+			});
 	}
+		
 
 	return (
 		<form id="signinForm" className='sign-in-form' onSubmit={ submitSigninHandler }>
