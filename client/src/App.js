@@ -1,6 +1,6 @@
 
 import './App.css';
-import GamePage from './components/GamePage/GamePage';
+import GamePage from './components/GamePage/GamePage.jsx'
 
 
 function App() {
