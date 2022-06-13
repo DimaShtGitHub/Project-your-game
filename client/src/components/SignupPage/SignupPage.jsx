@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
-import {Link, useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
-import { useDispatch, useSelector} from 'react-redux';
+import { useDispatch} from 'react-redux';
+import './SignupPage.css'
+import { Button } from 'react-bootstrap';
 
 export default function SignupPage() {
 	const dispatch = useDispatch();
@@ -30,12 +32,12 @@ export default function SignupPage() {
 		<form  onSubmit={submitSignUpHandler} id="signupForm" > 
 			<div className="registration-container">
 				<h2>Регистрация</h2>
-				<div className="form-group">
+				<div className="form-group login-email-pass">
 					<label htmlFor="username">Логин:</label>
 					<input 	
 						onChange={ inputSignUpHandler }
 						id="username"
-						className="form-control"
+						className="form-control login-email-pass"
 						name="name"
 						type="text"
 						placeholder="Введите логин"
@@ -45,12 +47,12 @@ export default function SignupPage() {
 						title="Латинские буквы, цифры и _"
 					/>
 				</div>
-				<div className="form-group">
+				<div className="form-group login-email-pass">
 					<label htmlFor="email">Email:</label>
 					<input
 						onChange={ inputSignUpHandler }
 						id="email"
-						className="form-control"
+						className="form-control login-email-pass"
 						name="email"
 						type="text"
 						placeholder="Введите email"
@@ -58,12 +60,12 @@ export default function SignupPage() {
 						required
 					/>
 				</div>
-				<div className="form-group">
+				<div className="form-group login-email-pass input-center-text">
 					<label htmlFor="password">Пароль:</label>
 					<input 
 						onChange={ inputSignUpHandler }
 						id="password"
-						className="form-control"
+						className="form-control login-email-pass"
 						name="password"
 						type="password"
 						placeholder="Введите пароль"
@@ -71,15 +73,13 @@ export default function SignupPage() {
 						minLength="6"
 					/>
 				</div>
-				<button type="submit" className="btn btn-primary">
-					Зарегистрироваться
-				</button>
+        <div className='sign-up-but'>
+				  <Button type="submit"  variant="warning" className="btn btn-primary singn-up-btn ">
+					  Зарегистрироваться
+				  </Button>
+        </div>
 			</div>
 		</form>
-		<div>
-			Если вы уже зарегистрированы, то{" "}
-			<Link to={"auth/signin"}>авторизуйтесь</Link>
-		</div>
 	</>
 	)
 }

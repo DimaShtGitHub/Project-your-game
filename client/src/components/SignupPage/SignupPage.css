@@ -1,0 +1,44 @@
+@import url(https://fonts.googleapis.com/css?family=Tenor+Sans|PT+Serif:400,400italic,700,700italic&subset=latin,cyrillic);
+
+.login-email-pass {
+  font-family: 'Tenor Sans', sans-serif;
+  font-size: 13px;
+  color: #111;
+  letter-spacing: 2px;
+  line-height: 1.4em;
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
+
+#signupForm {
+  display: flex;
+  justify-content: center;
+  margin-top: 120px;
+}
+
+.sign-up-but {
+  display: flex;
+  justify-content: center;
+}
+
+.singn-up-btn {
+  font-family: 'Tenor Sans', sans-serif;
+  font-size: 13px;
+  color: #111;
+  letter-spacing: 2px;
+  line-height: 1.4em;
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
+
+.login-email-pass {
+  font-family: 'Tenor Sans', sans-serif;
+  font-size: 13px;
+  color: #111;
+  letter-spacing: 2px;
+  line-height: 1.4em;
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
+
+
