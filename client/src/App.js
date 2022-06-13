@@ -1,6 +1,7 @@
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import GamePage from './components/GamePage/GamePage.jsx';
+import GamePage from './components/GamePage/GamePage.jsx'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header/Header';
 import SignupPage from './components/SignupPage/SignupPage';
