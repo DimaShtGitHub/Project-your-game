@@ -1,0 +1,2 @@
+PORT=****
+DB=postgres://name:password@localhost:5432/base-name
