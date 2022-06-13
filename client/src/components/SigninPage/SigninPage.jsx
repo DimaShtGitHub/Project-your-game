@@ -1,13 +1,12 @@
 import React, {useState} from 'react';
-import {Link, useNavigate } from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import axios from 'axios';
 
 export default function SigninPage() {
 	const [inputsSignin, setInputsSignin] = useState({});
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-
 
 	const inputsSigninHandler = (e)=> {
 		setInputsSignin((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -19,10 +18,11 @@ export default function SigninPage() {
 		axios.post('http://localhost:3001/auth/signin',user)
 			.then((user) => {
 				dispatch({ type: 'SET_USER', payload: user.data});
-				// localStorage.setItem('userId', newUser.data.id);
-			})
-		navigate('/');
+				localStorage.setItem('userId', user.data.id);
+				navigate('/');
+			});
 	}
+		
 
 	return (
 		<form id="signinForm" onSubmit={ submitSigninHandler }>
