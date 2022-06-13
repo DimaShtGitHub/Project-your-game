@@ -9,8 +9,6 @@ import SigninPage from './components/SigninPage/SigninPage';
 
 function App() {
 
-
-
 	return (
 		<>
 			<Header />
