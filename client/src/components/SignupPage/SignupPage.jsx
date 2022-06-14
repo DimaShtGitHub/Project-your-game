@@ -18,7 +18,7 @@ export default function SignupPage() {
 	const submitSignUpHandler = (e) => {
 		e.preventDefault();
 		const newUser = {name: inputSignUp.name, email: inputSignUp.email, password: inputSignUp.password}
-		axios.post('http://localhost:3001/auth/signup', newUser)
+		axios.post('http://localhost:3001/auth/signup', newUser, { withCredentials: true })
 		.then(newUser=> {
 			dispatch({type: 'SET_USE', payload: newUser.data});
 			localStorage.setItem('userId', newUser.data.id);

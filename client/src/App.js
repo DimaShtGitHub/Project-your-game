@@ -18,10 +18,11 @@ function App() {
 		<>
 			<Header />
 			<Routes>
-			  <Route path="/" element={<MainPage />} />
+				<Route path="/" element={<MainPage />} />
 				<Route path="/auth/signup" element={<SignupPage />} />
 				<Route path="/auth/signin" element={<SigninPage />} />
-				<Route path="/game" element={<GamePage />} />
+				{user.name ? <Route path="/game" element={<GamePage />} />
+					: <Route path="/game" element={<Navigate to="/" replace />} />}
 			</Routes>
 			<Footer />
 		</>

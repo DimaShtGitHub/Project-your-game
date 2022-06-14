@@ -17,7 +17,7 @@ export default function SigninPage() {
 	const submitSigninHandler = (e) => {
 		e.preventDefault();
 		const user = {name: inputsSignin.name, password: inputsSignin.password};
-		axios.post('http://localhost:3001/auth/signin',user)
+		axios.post('http://localhost:3001/auth/signin',user, { withCredentials: true })
 			.then((user) => {
 				dispatch({ type: 'SET_USER', payload: user.data});
 				localStorage.setItem('userId', user.data.id);

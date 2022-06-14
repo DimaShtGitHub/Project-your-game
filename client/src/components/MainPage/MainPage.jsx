@@ -8,14 +8,21 @@ import './MainPage.css';
 
 
 export default function MainPage() {
-
-  const user = useSelector((state)=> state.user);
-  const dispatch = useDispatch();
+	const user = useSelector((state)=> state.user);
+	const dispatch = useDispatch();
 
   useEffect(() => {
-  const userFromLocalStorage = localStorage?.getItem('userId');
+  const userFromLocalStorage = localStorage.getItem('userId');
   if (userFromLocalStorage) {
-  axios.get(`http://localhost:3001/user/${userFromLocalStorage}`).then((curUser) => dispatch({ type: 'SET_USER', payload: curUser.data}));
+  axios.get(`http://localhost:3001/auth/${userFromLocalStorage}`, { withCredentials: true }).then((answer) => {
+		if (answer.status===200) {
+			dispatch({ type: 'SET_USER', payload: answer.data});
+		} 
+	})
+	.catch((err)=> {
+		console.log(err);
+		localStorage.getItem('userId', '');
+	});
   }
   }, []); 
 
