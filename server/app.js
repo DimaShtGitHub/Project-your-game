@@ -14,7 +14,6 @@ const cors = require('cors');
 
 const FileStore = require('session-file-store')(session);
 
-
 const app = express();
 const PORT = process.env.PORT ?? 3001;
 
@@ -23,7 +22,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
 
 const sessionConfig = {
 	name: 'cookieYourGame',
@@ -34,11 +32,9 @@ const sessionConfig = {
 	cookie: { secure: false, maxAge: 1000 * 60 * 60 * 24 * 14 },//14 дней
 };
 
-
-
 app.use(session(sessionConfig));
 
-app.use(cors());
+app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 
 // app.use((req, res, next) => {
 // 	const accessList = [
@@ -61,20 +57,19 @@ app.use('/quest', questRouter)
 app.use('/oneQuest', oneQuestRouter)
 app.use('/auth', authRouter);
 
-
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
 	next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+app.use(function (err, req, res, next) {
+	// set locals, only providing error in development
+	res.locals.message = err.message;
+	res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500).end();
+	// render the error page
+	res.status(err.status || 500).end();
 });
 
 app.listen(PORT, console.log(`server on port: http://localhost:${PORT}`))

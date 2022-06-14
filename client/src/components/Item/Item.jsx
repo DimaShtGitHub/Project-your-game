@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import style from "./style.css";
 import { Button, Modal, Form } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import Timer from "../Timer/Timer";
+
 
 export default function Item({ title, id, counts, setCounts }) {
   const [show, setShow] = useState(false);
@@ -49,18 +51,19 @@ export default function Item({ title, id, counts, setCounts }) {
 
   return (
 		<>
-      <tbody>
-        <tr className="category" style={style}>
-          <th className="quest head" style={style}>{title}</th>
-          <td className="quest quest_score" style={style} onClick={() => submitDiv(id, 200)}>200</td>
-          <td className="quest quest_score" style={style} onClick={() => submitDiv(id, 400)} >400</td>
-          <td className="quest quest_score" style={style} onClick={() => submitDiv(id, 600)} >600</td>
-          <td className="quest quest_score" style={style} onClick={() => submitDiv(id, 800)} >800</td>
-          <td className="quest quest_score" style={style} onClick={() => submitDiv(id, 1000)} >1000</td>
-        </tr>
-      </tbody>
+    <tbody>
+      <tr className="category" style={style}>
+        <th className="quest head" style={style}>{title}</th>
+        <td className="quest quest_score" style={style} onClick={() => submitDiv(id, 200)}>200</td>
+				<td className="quest quest_score" style={style} onClick={() => submitDiv(id, 400)}>400</td>
+				<td className="quest quest_score" style={style} onClick={() => submitDiv(id, 600)}>600</td>
+				<td className="quest quest_score" style={style} onClick={() => submitDiv(id, 800)}>800</td>
+				<td className="quest quest_score" style={style} onClick={() => submitDiv(id, 1000)}>1000</td>
+      </tr>
+    </tbody>
       <Modal show={show} onHide={handleClose}>
         <Modal.Body>
+          <Timer handleClose={handleClose}/>
           <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>
