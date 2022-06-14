@@ -16,7 +16,19 @@ module.exports = {
             tableName: 'Users',
           },
           key: 'id',
-        }
+        },
+        onDelete: 'CASCADE',
+      },
+      categoryId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: {
+            tableName: 'Categories',
+          },
+          key: 'id',
+        },
+        onDelete: 'CASCADE',
       },
       totalScore: {
         type: Sequelize.INTEGER
