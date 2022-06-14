@@ -3,10 +3,8 @@ const bcrypt = require('bcrypt');
 const { User } = require('../db/models');
 
 router.post('/signup', async (req, res) => {
-	console.log(44444);
 	const { name, email, password } = req.body;
 	try {
-		console.log(33333333)
 		const loginUser = await User.findOne({ where: { name } });
 		console.log("loginUser", loginUser);
 		if (loginUser) {
@@ -24,7 +22,6 @@ router.post('/signup', async (req, res) => {
 			name: newUser.name,
 		};
 		const userForClient = { id: newUser.id, name, email };
-		console.log("!", userForClient);
 		res.json(userForClient);
 	} catch (err) {
 		console.error(err);
@@ -36,22 +33,39 @@ router.post('/signin', async (req, res) => {
 	try {
 		const user = await User.findOne({ where: { name } });
 
-		if (!user) return failAuth(res, 'Неправильное имя-пароль');
+		if (!user) return res.status(409).json({ message: 'Логин существуют' });
 
 		const isSame = await bcrypt.compare(password, user.password);
-		if (!isSame) return failAuth(res, 'Неправильное пароль-имя');
-		if (isSame) {
-			req.session.user = { // записываем в req.session.user данные (id & name) (создаем сессию)
-				id: user.id,
-				name: user.name,
-			};
-		}
+		if (!isSame) return res.status(409).json({ message: 'Неправильное пароль-имя' });
+
+		req.session.user = { // записываем в req.session.user данные (id & name) (создаем сессию)
+			id: user.id,
+			name: user.name,
+		};
 		res.json(user);
 	} catch (err) {
 		console.log(err.message);
-		failAuth(res, err);
 	}
 });
 
+router.post('/logout', (req, res, next) => {
+	req.session.destroy();
+	res.clearCookie('cookieYourGame');
+	res.status(200).send();
+});
+
+router.get('/:id', async (req, res) => {
+	try {
+		if (req.session?.user) {
+			const curUser = await User.findByPk(req.params.id);
+			res.json(curUser);
+		} else {
+			res.status(409).end();
+		}
+	} catch (err) {
+		console.log(err.message);
+	}
+
+})
 
 module.exports = router;
