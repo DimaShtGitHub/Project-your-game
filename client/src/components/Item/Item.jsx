@@ -2,27 +2,52 @@ import axios from "axios";
 import React, { useState } from "react";
 import style from "./style.css";
 import { Button, Modal, Form } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import Timer from "../Timer/Timer";
 
 
-export default function Item({ title, id }) {
+export default function Item({ title, id, counts, setCounts }) {
   const [show, setShow] = useState(false);
   const [test, setTest] = useState({});
+  const [statusClick, setStatusClick] = useState(true)
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const [inputs, setInputs] = useState([])
+
+  const questions = useSelector((state) => state.questions )
+
+  function inputHandler(event) {
+    setInputs(() => [event.target.value])
+  }
+
   function submitDiv(id, score) {
     handleShow();
-
+    setStatusClick(false)
     axios
       .post("http://localhost:3001/oneQuest", { id, score })
       .then((data) =>
-        setTest({ quest: data.data.text, answer: data.data.answer })
+        setTest(data.data)
       );
   }
+  console.log('test', statusClick);
 
-  console.log(test);
+  function sumScore() {
+    //TODO
+    // const camelInput = inputs[0].toLowerCase()
+
+
+    if(inputs[0] === test.answer) {
+      // console.log(37, counts[0]);
+      // console.log(test.score);
+      setCounts((prev) => Number(prev) + Number(test.score))
+      handleClose()
+    } else {
+      setCounts((prev) => Number(prev) - Number(test.score))
+      handleClose()  
+    }
+  }
 
   return (
 		<>
@@ -42,9 +67,9 @@ export default function Item({ title, id }) {
           <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>
-                <h3>{test.quest}</h3>
+                <h3>{test.text}</h3>
               </Form.Label>
-              <Form.Control type="text" autoFocus />
+              <Form.Control type="text" autoFocus onChange={inputHandler}/>
             </Form.Group>
           </Form>
         </Modal.Body>
@@ -52,7 +77,7 @@ export default function Item({ title, id }) {
           <Button variant="secondary" onClick={handleClose}>
             Закрыть
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={() => (sumScore())}>
             Подтвердить
           </Button>
         </Modal.Footer>
