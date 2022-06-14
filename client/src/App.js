@@ -9,6 +9,7 @@ import SignupPage from './components/SignupPage/SignupPage';
 import SigninPage from './components/SigninPage/SigninPage';
 import MainPage from './components/MainPage/MainPage';
 import { useSelector } from 'react-redux';
+import Result from './components/Result/Result';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
 				<Route path="/auth/signin" element={<SigninPage />} />
 				{user.name ? <Route path="/game" element={<GamePage />} />
 					: <Route path="/game" element={<Navigate to="/" replace />} />}
+				<Route path="/result" element={<Result />} />
 			</Routes>
 			<Footer />
 		</>

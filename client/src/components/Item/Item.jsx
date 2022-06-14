@@ -67,7 +67,7 @@ export default function Item({ title, id, counts, setCounts }) {
           <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>
-                <h3>{test.text}</h3>
+                <p style={{"text-align":"center", "font-size":"22px", "color": "#00084D"}}>{test.text}</p>
               </Form.Label>
               <Form.Control type="text" autoFocus onChange={inputHandler}/>
             </Form.Group>
@@ -77,7 +77,7 @@ export default function Item({ title, id, counts, setCounts }) {
           <Button variant="secondary" onClick={handleClose}>
             Закрыть
           </Button>
-          <Button variant="primary" onClick={() => (sumScore())}>
+          <Button style={{"background":"#001499"}} variant="primary" onClick={() => (sumScore())}>    
             Подтвердить
           </Button>
         </Modal.Footer>
