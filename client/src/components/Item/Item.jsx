@@ -13,7 +13,6 @@ export default function Item({ title, id }) {
   const handleShow = () => setShow(true);
 
   function submitDiv(id, score) {
-    // console.log(111);
     handleShow();
 
     axios
@@ -27,14 +26,29 @@ export default function Item({ title, id }) {
 
   return (
 		<>
+<<<<<<< HEAD
+    <tbody>
       <tr className="category" style={style}>
-        <thead className="quest head" style={style}>{title}</thead>
-        <td className="quest quest_score" style={style} onClick={() => submitDiv(id, 200)} >200</td>
-				<td className="quest quest_score" style={style} onClick={() => submitDiv(id, 400)} >400</td>
-				<td className="quest quest_score" style={style} onClick={() => submitDiv(id, 600)} >600</td>
-				<td className="quest quest_score" style={style} onClick={() => submitDiv(id, 800)} >800</td>
-				<td className="quest quest_score" style={style} onClick={() => submitDiv(id, 1000)} >1000</td>
+        <th className="quest head" style={style}>{title}</th>
+        <td className="quest quest_score" style={style} onClick={() => submitDiv(id, 200)}>200</td>
+				<td className="quest quest_score" style={style} onClick={() => submitDiv(id, 400)}>400</td>
+				<td className="quest quest_score" style={style} onClick={() => submitDiv(id, 600)}>600</td>
+				<td className="quest quest_score" style={style} onClick={() => submitDiv(id, 800)}>800</td>
+				<td className="quest quest_score" style={style} onClick={() => submitDiv(id, 1000)}>1000</td>
       </tr>
+    </tbody>
+=======
+      <tbody>
+        <tr className="category" style={style}>
+          <th className="quest head" style={style}>{title}</th>
+          <td className="quest quest_score" style={style} onClick={() => submitDiv(id, 200)}>200</td>
+          <td className="quest quest_score" style={style} onClick={() => submitDiv(id, 400)} >400</td>
+          <td className="quest quest_score" style={style} onClick={() => submitDiv(id, 600)} >600</td>
+          <td className="quest quest_score" style={style} onClick={() => submitDiv(id, 800)} >800</td>
+          <td className="quest quest_score" style={style} onClick={() => submitDiv(id, 1000)} >1000</td>
+        </tr>
+      </tbody>
+>>>>>>> main
       <Modal show={show} onHide={handleClose}>
         <Modal.Body>
           <Timer handleClose={handleClose}/>
