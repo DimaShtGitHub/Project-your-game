@@ -15,13 +15,14 @@ module.exports = {
           model: {
             tableName: 'Categories',
           }
-        }
+        },
+        onDelete: 'CASCADE',
       },
       score: {
         type: Sequelize.INTEGER
       },
       text: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       answer: {
         type: Sequelize.STRING
