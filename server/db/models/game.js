@@ -13,13 +13,14 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(models.User, {
         foreignKey: 'userId'
       });
-      this.hasMany(models.Category, {
-        foreignKey: 'gameId',
+      this.belongsTo(models.Category, {
+        foreignKey: 'categoryId',
       })
     }
   }
   Game.init({
     userId: DataTypes.INTEGER,
+    categoryId: DataTypes.INTEGER,
     totalScore: DataTypes.INTEGER
   }, {
     sequelize,
