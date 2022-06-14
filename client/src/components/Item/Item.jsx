@@ -25,14 +25,16 @@ export default function Item({ title, id }) {
 
   return (
 		<>
-      <tr className="category" style={style}>
-        <thead className="quest head" style={style}>{title}</thead>
-        <td className="quest quest_score" style={style} onClick={() => submitDiv(id, 200)} style={style}>200</td>
-				<td className="quest quest_score" style={style} onClick={() => submitDiv(id, 400)} style={style}>400</td>
-				<td className="quest quest_score" style={style} onClick={() => submitDiv(id, 600)} style={style}>600</td>
-				<td className="quest quest_score" style={style} onClick={() => submitDiv(id, 800)} style={style}>800</td>
-				<td className="quest quest_score" style={style} onClick={() => submitDiv(id, 1000)} style={style}>1000</td>
-      </tr>
+      <tbody>
+        <tr className="category" style={style}>
+          <th className="quest head" style={style}>{title}</th>
+          <td className="quest quest_score" style={style} onClick={() => submitDiv(id, 200)}>200</td>
+          <td className="quest quest_score" style={style} onClick={() => submitDiv(id, 400)} >400</td>
+          <td className="quest quest_score" style={style} onClick={() => submitDiv(id, 600)} >600</td>
+          <td className="quest quest_score" style={style} onClick={() => submitDiv(id, 800)} >800</td>
+          <td className="quest quest_score" style={style} onClick={() => submitDiv(id, 1000)} >1000</td>
+        </tr>
+      </tbody>
       <Modal show={show} onHide={handleClose}>
         <Modal.Body>
           <Form>
