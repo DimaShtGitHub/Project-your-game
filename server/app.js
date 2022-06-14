@@ -5,12 +5,15 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+
+const questRouter = require('./routes/game/questRouter');
+const oneQuestRouter = require('./routes/game/oneQuestRouter')
+const authRouter = require('./routes/auth');
 const session = require('express-session');
 const cors = require('cors');
 
 const FileStore = require('session-file-store')(session);
 
-const authRouter = require('./routes/auth');
 
 const app = express();
 const PORT = process.env.PORT ?? 3001;
@@ -19,6 +22,8 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 const sessionConfig = {
 	name: 'cookieYourGame',
@@ -26,9 +31,10 @@ const sessionConfig = {
 	secret: 'secretYourGame',
 	resave: false,
 	saveUninitialized: false,
-	cookie: { secure: false, maxAge: 1000 * 60 * 60 * 24 * 14 },
-
+	cookie: { secure: false, maxAge: 1000 * 60 * 60 * 24 * 14 },//14 дней
 };
+
+
 
 app.use(session(sessionConfig));
 
@@ -49,7 +55,12 @@ app.use(cors());
 // 	next();
 // });
 
+// console.log(req.session?.user
+
+app.use('/quest', questRouter)
+app.use('/oneQuest', oneQuestRouter)
 app.use('/auth', authRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -57,14 +68,13 @@ app.use(function (req, res, next) {
 });
 
 // error handler
-app.use(function (err, req, res, next) {
-	// set locals, only providing error in development
-	res.locals.message = err.message;
-	res.locals.error = req.app.get('env') === 'development' ? err : {};
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-	// render the error page
-	res.status(err.status || 500);
-	res.render('error');
+  // render the error page
+  res.status(err.status || 500).end();
 });
 
 app.listen(PORT, console.log(`server on port: http://localhost:${PORT}`))

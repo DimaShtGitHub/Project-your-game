@@ -1,0 +1,10 @@
+.game_container {
+	display: flex;
+	justify-content:center;
+	margin: 3%;
+}
+.field_container {
+	width: 745 px;
+	background: radial-gradient( #001499, #00084D);
+	/* margin: 10%; */
+}
