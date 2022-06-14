@@ -10,7 +10,7 @@ export default function Header() {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container style={{"background":"#222529", "width":"100%"}}>
-        <Navbar.Brand className="text-header-brand">Своя Игра</Navbar.Brand>
+        <Navbar.Brand className="text-header-brand" as={Link} to="/">Своя Игра</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">

@@ -31,9 +31,10 @@ const sessionConfig = {
 	secret: 'secretYourGame',
 	resave: false,
 	saveUninitialized: false,
-	cookie: { secure: false, maxAge: 1000 * 60 * 60 * 24 * 14 },
-  
+	cookie: { secure: false, maxAge: 1000 * 60 * 60 * 24 * 14 },//14 дней
 };
+
+
 
 app.use(session(sessionConfig));
 
@@ -53,6 +54,8 @@ app.use(cors());
 // 	}
 // 	next();
 // });
+
+// console.log(req.session?.user
 
 app.use('/quest', questRouter)
 app.use('/oneQuest', oneQuestRouter)

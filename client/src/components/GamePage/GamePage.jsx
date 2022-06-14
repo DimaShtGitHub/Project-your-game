@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Item from '../Item/Item';
+import style from './game.module.css';
 
 export default function GamePage() {
   const [categories, setCategories] = useState([])
@@ -11,9 +12,11 @@ export default function GamePage() {
   }, []);
   
   return (
-    <div>
-      {categories ? categories.map((el) => <Item title={el.title} id={el.id} key={el.id} />) : '404'}
-    </div>
+		<div className={style.game_container}>
+    	<table className={style.field_container}>
+      	{categories ? categories.map((el) => <Item title={el.title} id={el.id} key={el.id} />) : '404'}
+    	</table>
+		</div>
   )
 
 }
