@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useState } from "react";
 import style from "./style.css";
 import { Button, Modal, Form } from "react-bootstrap";
+import Timer from "../Timer/Timer";
+
 
 export default function Item({ title, id }) {
   const [show, setShow] = useState(false);
@@ -49,6 +51,7 @@ export default function Item({ title, id }) {
 >>>>>>> main
       <Modal show={show} onHide={handleClose}>
         <Modal.Body>
+          <Timer handleClose={handleClose}/>
           <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>
