@@ -11,15 +11,6 @@ module.exports = {
       title: {
         type: Sequelize.STRING
       },
-      gameId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: {
-            tableName: 'Games',
-          }
-        }
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
