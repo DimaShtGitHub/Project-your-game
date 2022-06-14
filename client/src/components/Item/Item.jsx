@@ -39,7 +39,7 @@ export default function Item({ title, id }) {
           <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>
-                <h3>{test.quest}</h3>
+                <p style={{"text-align":"center", "font-size":"22px", "color": "#00084D"}}>{test.quest}</p>
               </Form.Label>
               <Form.Control type="text" autoFocus />
             </Form.Group>
@@ -49,7 +49,7 @@ export default function Item({ title, id }) {
           <Button variant="secondary" onClick={handleClose}>
             Закрыть
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button style={{"background":"#001499"}} variant="primary" onClick={handleClose}>
             Подтвердить
           </Button>
         </Modal.Footer>

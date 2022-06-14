@@ -14,7 +14,7 @@
 	justify-content:center;
 }
 .quest_score {
-	width: 100px;
+	width: 175px;
 	cursor: pointer;
 	justify-content: center;
 }
@@ -28,6 +28,43 @@
 	height: 70px;
 	flex-wrap: wrap;
 	text-align:center;
+	padding: 1%;
 }
+
+/* @media (min-width: 768px) and (max-width: 1400px) {
+	.category {
+		font-size: 22px;
+	}
+
+	.head {
+		width: 175px;
+	}
+
+	.quest_score {
+		width: 125px;
+	}
+	
+	.quest {
+		height: 50px;
+	}
+
+@media (max-width: 767px) {
+	.category {
+		font-size: 18px;
+	}
+	
+	.head {
+		width: 130px;
+	}
+
+	.quest_score {
+		width: 90px;
+	}
+	
+	.quest {
+		height: 38px;
+	}
+} */
+
 
 
