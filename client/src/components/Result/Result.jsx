@@ -1,6 +1,6 @@
 import React from "react";
 // import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import style from "./Result.module.css";
 
 export default function Result() {
@@ -9,8 +9,15 @@ export default function Result() {
 
 	return (
 		<div className={style.result_container}>
+     {
+      points > 0 ?
+      <>
 			<h1>Ваш результат, {user.name}, {points} очков!</h1>
 			<h1>Поздравляем!!!</h1>
+      </>
+      : points <= 0 ? <h1>Ваш результат, {user.name}, {points} очков!</h1>
+      : <></>
+     }
 		</div>
 	);
 }

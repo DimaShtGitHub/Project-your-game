@@ -10,6 +10,7 @@ export default function SignupPage() {
 	const navigate = useNavigate();
 
 	const [inputSignUp, setInputSignUp] = useState({});
+  const [err, setErr] = useState({})
 
 	const inputSignUpHandler = (e) => {
 		setInputSignUp((prev) => ({ ...prev, [e.target.name]: e.target.value }))
@@ -24,7 +25,14 @@ export default function SignupPage() {
 			localStorage.setItem('userId', newUser.data.id);
 			setInputSignUp({});
 			navigate("/game");
-		});
+		})
+    .catch((res) => {
+      if (res.response.status === 401) {
+        setErr((prev) => (res.response.data))
+      } else if (res.response.status === 500) {
+        setErr((prev) => (res.response.data))
+      }
+    })
 };
 
 
@@ -74,6 +82,7 @@ export default function SignupPage() {
 						minLength="6"
 					/>
 				</div>
+        <div className="errMessages">{err.message}</div>
         <div className='sign-up-but'>
 				  <Button type="submit"  variant="warning" className="btn btn-primary singn-up-btn ">
 					  Зарегистрироваться

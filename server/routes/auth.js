@@ -8,12 +8,12 @@ router.post('/signup', async (req, res) => {
 		const loginUser = await User.findOne({ where: { name } });
 		console.log("loginUser", loginUser);
 		if (loginUser) {
-			return res.status(409).json({ message: 'Логин или email существуют' });
+			return res.status(401).json({ message: 'Логин или email существуют' });
 		}
 		const emailUser = await User.findOne({ where: { email } });
 		console.log("emailUser", emailUser);
 		if (emailUser) {
-			return res.status(409).json({ message: 'Логин или email существуют' });
+			return res.status(401).json({ message: 'Логин или email существуют' });
 		}
 		const hashedPassword = await bcrypt.hash(password, 10);
 		const newUser = await User.create({ name, email, password: hashedPassword });
@@ -24,7 +24,7 @@ router.post('/signup', async (req, res) => {
 		const userForClient = { id: newUser.id, name, email };
 		res.json(userForClient);
 	} catch (err) {
-		console.error(err);
+		return res.status(500).json({ message: 'Сервер временно недоступен, попробуйте позже' });
 	}
 });
 
@@ -33,10 +33,10 @@ router.post('/signin', async (req, res) => {
 	try {
 		const user = await User.findOne({ where: { name } });
 
-		if (!user) return res.status(409).json({ message: 'Логин существуют' });
+		if (!user) return res.status(401).json({ message: 'Неверный логин или пароль' });
 
 		const isSame = await bcrypt.compare(password, user.password);
-		if (!isSame) return res.status(409).json({ message: 'Неправильное пароль-имя' });
+		if (!isSame) return res.status(401).json({ message: 'Неверный логин или пароль' });
 
 		req.session.user = { // записываем в req.session.user данные (id & name) (создаем сессию)
 			id: user.id,
@@ -44,14 +44,14 @@ router.post('/signin', async (req, res) => {
 		};
 		res.json(user);
 	} catch (err) {
-		console.log(err.message);
+	  return res.status(500).json({ message: 'Сервер временно недоступен, попробуйте позже' });
 	}
 });
 
-router.post('/logout', (req, res, next) => {
+router.post('/logout', (req, res) => {
 	req.session.destroy();
 	res.clearCookie('cookieYourGame');
-	res.status(200).send();
+	res.sendStatus(200);
 });
 
 router.get('/:id', async (req, res) => {

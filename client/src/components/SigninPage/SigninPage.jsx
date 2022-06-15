@@ -7,6 +7,7 @@ import { Button } from 'react-bootstrap'
 
 export default function SigninPage() {
 	const [inputsSignin, setInputsSignin] = useState({});
+  const [err, setErr] = useState({})
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
@@ -22,7 +23,14 @@ export default function SigninPage() {
 				dispatch({ type: 'SET_USER', payload: user.data});
 				localStorage.setItem('userId', user.data.id);
 				navigate('/');
-			});
+			})
+      .catch((res) => {
+        if (res.response.status === 401) {
+          setErr((prev) => (res.response.data))
+        } else if (res.response.status === 500) {
+          setErr((prev) => (res.response.data))
+        }
+      })
 	}
 		
 
@@ -54,6 +62,7 @@ export default function SigninPage() {
             required
           />
         </div>
+        <div className='errMessages'>{err.message}</div>
         <div className='but-login'>
         <Button type="submit" variant="secondary" className="btn btn-primary login-email-pass-but">
           Войти
