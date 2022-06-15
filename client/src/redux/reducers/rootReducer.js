@@ -1,8 +1,20 @@
-import { userReducer } from "./userReducer";
 import { combineReducers } from 'redux';
-import { questionsReducer } from "./questionsReducer";
+import { pointsReducer } from './pointsReducer';
+import { userReducer } from './userReducer';
+import { categoriesReducer } from './categoriesReducer';
+import { allQuestionsReducer } from './allQuestionsReducer';
+import { oneQuestionReducer } from './oneQuestionReducer';
+import { visibilityReducer } from './visibilityReducer';
+import { answerResultReducer } from './answerResultReducer';
+import { checkedQuestReducer } from './checkedQuestReducer';
 
 export const rootReducer = combineReducers({
 	user: userReducer,
-  questions: questionsReducer 
+	points: pointsReducer,
+	categories: categoriesReducer,
+	allQuestions: allQuestionsReducer,
+	question: oneQuestionReducer,
+	visibility: visibilityReducer,
+	answerResult: answerResultReducer,
+	checkedQuest: checkedQuestReducer,
 });

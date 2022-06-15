@@ -6,8 +6,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
-const questRouter = require('./routes/game/questRouter');
-const oneQuestRouter = require('./routes/game/oneQuestRouter')
+const questRouter = require('./routes/getDataRouter');
 const authRouter = require('./routes/auth');
 const session = require('express-session');
 const cors = require('cors');
@@ -35,7 +34,6 @@ const sessionConfig = {
 app.use(session(sessionConfig));
 
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
-
 // app.use((req, res, next) => {
 // 	const accessList = [
 // 		'http://localhost:3000',
@@ -52,16 +50,12 @@ app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 // });
 
 // console.log(req.session?.user
-
-app.use('/quest', questRouter)
-app.use('/oneQuest', oneQuestRouter)
+app.use('/get', questRouter)
 app.use('/auth', authRouter);
-
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
 	next(createError(404));
 });
-
 // error handler
 app.use(function (err, req, res, next) {
 	// set locals, only providing error in development

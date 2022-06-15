@@ -24,7 +24,8 @@ function App() {
 				<Route path="/auth/signin" element={<SigninPage />} />
 				{user.name ? <Route path="/game" element={<GamePage />} />
 					: <Route path="/game" element={<Navigate to="/" replace />} />}
-				<Route path="/result" element={<Result />} />
+				{user.name ? <Route path="/result" element={<Result />} />
+					: <Route path="/result" element={<Navigate to="/" replace />} />}
 			</Routes>
 			<Footer />
 		</>

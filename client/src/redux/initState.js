@@ -1,4 +1,10 @@
 export const initState = {
 	user: {},
-  questions: {},
+	points: (0),
+	categories: [],
+	allQuestions: {},
+	question: {},
+	visibility: false,
+	answerResult: '',
+	checkedQuest: 0,
 }
