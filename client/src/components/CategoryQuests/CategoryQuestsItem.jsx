@@ -22,6 +22,7 @@ export default function Item({ title, id }) {
 			navigate('/result');
 		}
 	};
+
 	const handleShow = () => {
 		dispatch({ type: "SET_ANSWER_RESULT", payload: "" });
 		dispatch({ type: 'SET_VISIBILITY', payload: true })
@@ -51,7 +52,6 @@ export default function Item({ title, id }) {
 			dispatch({ type: "SET_ANSWER_RESULT", payload: "wrong" });
 			dispatch({ type: 'DEDUCT_POINTS', payload: question.score });
 		}
-		setTimeout(handleClose, 3000);
 	}
 
 	return (
@@ -86,7 +86,7 @@ export default function Item({ title, id }) {
 							: <p></p>}
 				</Form.Label>
 				<Modal.Footer>
-					<Button variant="secondary" onClick={handleClose}>Закрыть</Button>
+					<Button variant="secondary" onClick={() => handleClose()}>Закрыть</Button>
 					<Button style={{ background: '#001499' }} variant="primary" onClick={() => checkAnswer()}>Подтвердить</Button>
 				</Modal.Footer>
 			</Modal>
