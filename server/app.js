@@ -5,13 +5,14 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-
-const questRouter = require('./routes/getDataRouter');
-const authRouter = require('./routes/auth');
-const session = require('express-session');
 const cors = require('cors');
 
+const session = require('express-session');
 const FileStore = require('session-file-store')(session);
+
+const getDataRouter = require('./routes/getDataRouter');
+const authRouter = require('./routes/auth');
+const scoreRouter = require('./routes/scoreRouter');
 
 const app = express();
 const PORT = process.env.PORT ?? 3001;
@@ -50,8 +51,9 @@ app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 // });
 
 // console.log(req.session?.user
-app.use('/get', questRouter)
+app.use('/get', getDataRouter)
 app.use('/auth', authRouter);
+app.use('/score', scoreRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
 	next(createError(404));

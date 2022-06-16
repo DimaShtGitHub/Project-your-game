@@ -46,7 +46,7 @@ export default function Item({ title, id }) {
 	const checkAnswer = () => {
 		if (inputAnswer.answer === question.answer) {
 			dispatch({ type: "SET_ANSWER_RESULT", payload: "right" });
-			dispatch({ type: "SET_POINTS", payload: question.score });
+			dispatch({ type: "PLUS_POINTS", payload: question.score });
 		} else {
 			dispatch({ type: "SET_ANSWER_RESULT", payload: "wrong" });
 			dispatch({ type: 'DEDUCT_POINTS', payload: question.score });

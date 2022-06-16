@@ -7,6 +7,7 @@ import { oneQuestionReducer } from './oneQuestionReducer';
 import { visibilityReducer } from './visibilityReducer';
 import { answerResultReducer } from './answerResultReducer';
 import { checkedQuestReducer } from './checkedQuestReducer';
+import { maxScoreReducer } from './maxScoreReducer';
 
 export const rootReducer = combineReducers({
 	user: userReducer,
@@ -17,4 +18,5 @@ export const rootReducer = combineReducers({
 	visibility: visibilityReducer,
 	answerResult: answerResultReducer,
 	checkedQuest: checkedQuestReducer,
+	maxScore: maxScoreReducer,
 });

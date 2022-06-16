@@ -6,12 +6,10 @@ router.post('/signup', async (req, res) => {
 	const { name, email, password } = req.body;
 	try {
 		const loginUser = await User.findOne({ where: { name } });
-		console.log("loginUser", loginUser);
 		if (loginUser) {
 			return res.status(401).json({ message: 'Логин или email существуют' });
 		}
 		const emailUser = await User.findOne({ where: { email } });
-		console.log("emailUser", emailUser);
 		if (emailUser) {
 			return res.status(401).json({ message: 'Логин или email существуют' });
 		}

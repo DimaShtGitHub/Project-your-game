@@ -16,6 +16,7 @@ export default function GamePage() {
 	const navigate = useNavigate();
 
 	useEffect(() => {
+		dispatch({ type: "SET_POINTS", payload: 0 });
 		dispatch(getCategories());
 		dispatch(getAllQuestions());
 	}, []);
